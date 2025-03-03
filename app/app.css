@@ -53,6 +53,8 @@ body {
   li {
     background-color: white;
     padding: 8px;
+    display: flex;
+    justify-content: space-between;
   }
   
   li:hover {
