@@ -8,6 +8,7 @@ import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
+import Link from 'next/link';
 
 Amplify.configure(outputs);
 
@@ -42,6 +43,8 @@ export default function App() {
     <main>
       <h1>{user?.signInDetails?.loginId}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
+      <Link href="/comments">To Comments</Link>
+      <br />
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
