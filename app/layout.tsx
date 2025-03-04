@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>      
-        <AuthLayout>
+        {/* <AuthLayout> */}
           {children}
-        </AuthLayout>
+        {/* </AuthLayout> */}
       </body>
     </html>
   );

@@ -10,14 +10,16 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import Link from 'next/link';
 
-Amplify.configure(outputs);
+Amplify.configure(outputs, {
+  ssr: true // required when using Amplify with Next.js
+});
 
 const client = generateClient<Schema>();
 
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
     
-  const { user, signOut } = useAuthenticator();
+  // const { user, signOut } = useAuthenticator();
 
   function listTodos() {
     client.models.Todo.observeQuery().subscribe({
@@ -41,7 +43,7 @@ export default function App() {
 
   return (
     <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
+      {/* <h1>{user?.signInDetails?.loginId}'s todos</h1> */}
       <button onClick={createTodo}>+ new</button>
       <Link href="/comments">To Comments</Link>
       <br />
@@ -60,7 +62,10 @@ export default function App() {
           Review next steps of this tutorial.
         </a>
       </div>
-      <button onClick={signOut}>Sign out</button>
+      {/* <button onClick={signOut}>Sign out</button> */}
+      <a href="/api/auth/sign-out">
+        Sign In
+      </a>
     </main>
   );
 }
