@@ -1,15 +1,8 @@
 import React from 'react'
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
-import outputs from "@/amplify_outputs.json";
-import { Amplify } from 'aws-amplify';
-
-Amplify.configure(outputs);
-
-const client = generateClient<Schema>();
+import { publicClient } from '@/utils/data-server-utils';
 
 export default async function comments() {
-  const { data, errors } = await client.models.Todo.list();
+  const { data, errors } = await publicClient.models.Comments.list();
   console.log("data", data);
 
   if (errors) {
